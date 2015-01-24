@@ -118,4 +118,6 @@ public class Movement : MonoBehaviour {
 			dolares += 2f;
 	}
 
-	}
+
+
+}
