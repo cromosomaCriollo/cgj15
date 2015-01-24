@@ -16,6 +16,9 @@ public class Timer : MonoBehaviour {
 	void Update () {
 		TimerF = TimerF + Time.deltaTime;
 		//sameText.text = TimerF.ToString();
-		someText.text = ((int) TimerF).ToString ();
+//		someText.text = ((int) TimerF).ToString ();
+		// para pruebas
+		someText.text = TimerF.ToString ("0.00");
+
 	}
 }

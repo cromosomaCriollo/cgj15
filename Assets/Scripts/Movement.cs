@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class Movement : MonoBehaviour {
 	public float Speed = 3.0f;
@@ -11,6 +12,9 @@ public class Movement : MonoBehaviour {
 	private float angle;
 	public float TiltCD = 1.0f;
 	private float CurrentCD;
+	public Text Plata;
+	public bool paused = false;
+
 
 	void Start () {
 		Speed = PlayerPrefs.GetFloat ("Speed", 3.0f);
@@ -78,27 +82,40 @@ public class Movement : MonoBehaviour {
 			Idle.SetActive(false);
 			Side.SetActive(true);
 		}
-		calcularDireccion (transform.localEulerAngles);
+		calcularDireccion (transform.localEulerAngles, paused);
+		Plata.text = dolares.ToString ("0.00");
+		// para pruebas
+		if (dolares == 100f) {
+			paused = true;
+			Debug.Log("parate");
+			Time.timeScale = 0;
+
+				}
+
 	}
 
-	public void calcularDireccion(Vector3 angulo) {
-				if (angulo.z <= 45) {
-			            
-			calcularDano(angulo.z);
-				} else if ((angulo.z >= 315 && angulo.z < 360)) {
-			calcularDano(angulo.z - 315);
-				} else {
-			calcularDano(100);
+	public void calcularDireccion(Vector3 angulo, bool paused) {
+		if (!paused) {
+			if (angulo.z <= 45) {
+				
+				calcularDano(angulo.z);
+			} else if ((angulo.z >= 315 && angulo.z < 360)) {
+				calcularDano(angulo.z - 315);
+			} else {
+				calcularDano(100);
+			}
 				}
+				
 		}
 	public void calcularDano(float angulo){
-		if (angulo < 15) {
-			dolares =+ 10;
-				} else if (angulo >= 15 && angulo < 30) {
-			dolares =+ 50;
-				} else {
-			dolares =+ 90;
-				}
+//		if (angulo < 15) {
+//			dolares += 0.05f;
+//				} else if (angulo >= 15 && angulo < 30) {
+//			dolares += 0.08f;
+//				} else {
+//			dolares += 2f;
+//				}
+			dolares += 2f;
 	}
 
 	}
