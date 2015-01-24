@@ -3,9 +3,8 @@ using System.Collections;
 using UnityEngine.UI;
 
 public class Movement : MonoBehaviour {
-	public float Speed = 3.0f;
+	public float Speed = 10.0f;
 	public float dolares = 0.0f;
-	// Use this for initialization
 	public GameObject Idle;
 	public GameObject Side;
 	private float Horizontal = 0.0f;
@@ -21,11 +20,6 @@ public class Movement : MonoBehaviour {
 		CurrentCD = TiltCD;
 	}
 
-	/*public void File ()
-	{
-		PlayerPrefs.SetFloat ("Speed", Speed);
-		angle = transform.localEulerAngles.z;
-	}*/
 
 	// Update is called once per frame
 	void FixedUpdate () {
@@ -36,12 +30,9 @@ public class Movement : MonoBehaviour {
 			Horizontal = Input.acceleration.x;
 		}
 		Vector2 Vector = new Vector2 (Horizontal, Horizontal/2) * Speed;
-		Vector2 VectorA = new Vector2 (Input.acceleration.x, Horizontal/2) * Speed;
-		rigidbody2D.AddForce (Vector);
-		rigidbody2D.AddForce (VectorA);
-		//if (horizontal != 0) {
-			//Debug.LogWarning (Vector);
-		//}
+		Vector2 VectorA = new Vector2 (Input.acceleration.x, Horizontal/2) * Speed; //vector ligeramente angulado hacia abajo
+		rigidbody2D.AddForce (Vector);	//movimiento pc
+		rigidbody2D.AddForce (VectorA); //movimiento movil 
 
 	}
 
@@ -69,18 +60,17 @@ public class Movement : MonoBehaviour {
 
 
 		//FLIP DE SPRITE
-		if (angle >= 0 && angle <= 10 || angle >= 350 && angle <= 360){
-			Idle.SetActive(true);
-			Side.SetActive(false);
+		if (angle >= 0 && angle <= 10 || angle >= 350 && angle <= 360) {
+			Idle.SetActive (true);
+			Side.SetActive (false);
+		} else {
+			Idle.SetActive(false);
+			Side.SetActive(true);
 		}
 		if (Horizontal > 0) { 
 			transform.localScale = new Vector3 (-2.0f, transform.localScale.y, transform.localScale.z);
-			Idle.SetActive(false);
-			Side.SetActive(true);
 		} else if (Horizontal < 0){
 			transform.localScale = new Vector3 (2.0f, transform.localScale.y, transform.localScale.z);
-			Idle.SetActive(false);
-			Side.SetActive(true);
 		}
 		calcularDireccion (transform.localEulerAngles, paused);
 		Plata.text = dolares.ToString ("0.00");
