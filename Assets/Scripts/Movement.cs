@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class Movement : MonoBehaviour {
 	public float Speed = 10.0f;
-	public float dolares = 0.0f;
+	public float dolares = 150.0f;
 	public GameObject Idle;
 	public GameObject Side;
 	private float Horizontal = 0.0f;
@@ -41,6 +41,7 @@ public class Movement : MonoBehaviour {
 		//Tilting
 
 		angle = transform.localEulerAngles.z;
+		Debug.Log (angle);
 		if (CurrentCD <= TiltCD) {
 			float tilting = Mathf.Sin(CurrentCD*6);
 					
@@ -74,17 +75,13 @@ public class Movement : MonoBehaviour {
 		calcularDireccion (transform.localEulerAngles, paused);
 		Plata.text = dolares.ToString ("0.00");
 		// para pruebas
-<<<<<<< HEAD
 		if (dolares == 100f) {
 			//paused = true;
-=======
-		if (dolares >= 100f) {
-			paused = true;
->>>>>>> origin/master
+
 			Debug.Log("parate");
 			//Time.timeScale = 0;
 
-				}
+			}
 
 	}
 
