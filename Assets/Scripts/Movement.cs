@@ -74,8 +74,13 @@ public class Movement : MonoBehaviour {
 		calcularDireccion (transform.localEulerAngles, paused);
 		Plata.text = dolares.ToString ("0.00");
 		// para pruebas
+<<<<<<< HEAD
 		if (dolares == 100f) {
 			//paused = true;
+=======
+		if (dolares >= 100f) {
+			paused = true;
+>>>>>>> origin/master
 			Debug.Log("parate");
 			//Time.timeScale = 0;
 
@@ -104,7 +109,7 @@ public class Movement : MonoBehaviour {
 //				} else {
 //			dolares += 2f;
 //				}
-			dolares += 2f;
+			dolares += 10f * Time.deltaTime;
 	}
 
 
