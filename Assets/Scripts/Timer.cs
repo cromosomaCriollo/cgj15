@@ -15,10 +15,9 @@ public class Timer : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		TimerF = TimerF + Time.deltaTime;
-		//sameText.text = TimerF.ToString();
-//		someText.text = ((int) TimerF).ToString ();
+		someText.text = ((int) TimerF).ToString () + " s";
 		// para pruebas
-		someText.text = TimerF.ToString ("0.00");
+		//someText.text = TimerF.ToString ("0.00");
 
 	}
 }

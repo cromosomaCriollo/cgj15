@@ -16,7 +16,6 @@ public class Movement : MonoBehaviour {
 
 
 	void Start () {
-		Speed = PlayerPrefs.GetFloat ("Speed", 3.0f);
 		CurrentCD = TiltCD;
 	}
 
@@ -81,6 +80,7 @@ public class Movement : MonoBehaviour {
 			Plata.text = "Mortadela";
 			Plata.color = Color.red;
 			Time.timeScale = 0;
+
 
 				}
 
