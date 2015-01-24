@@ -5,7 +5,7 @@ public class PlayButton : MonoBehaviour {
 
 	public void NextScene()
 	{
-		//Screen sleepTimeOut = SleepTimeout.NeverSleep;
+		Screen.sleepTimeout = SleepTimeout.NeverSleep;
 		Application.LoadLevel ("MainScene");
 	}
 }

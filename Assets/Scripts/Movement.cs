@@ -16,7 +16,6 @@ public class Movement : MonoBehaviour {
 
 
 	void Start () {
-		Speed = PlayerPrefs.GetFloat ("Speed", 3.0f);
 		CurrentCD = TiltCD;
 	}
 
@@ -76,9 +75,9 @@ public class Movement : MonoBehaviour {
 		Plata.text = dolares.ToString ("0.00");
 		// para pruebas
 		if (dolares == 100f) {
-			paused = true;
+			//paused = true;
 			Debug.Log("parate");
-			Time.timeScale = 0;
+			//Time.timeScale = 0;
 
 				}
 
