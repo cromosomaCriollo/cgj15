@@ -7,6 +7,9 @@ public class Restart : MonoBehaviour {
 	{
 
 		Application.LoadLevel (Application.loadedLevelName);
+		if (Time.timeScale == 0) {
+			Time.timeScale = 1;
+				}
 	}
 
 
