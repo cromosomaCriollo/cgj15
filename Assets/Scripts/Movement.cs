@@ -73,13 +73,14 @@ public class Movement : MonoBehaviour {
 			transform.localScale = new Vector3 (2.0f, transform.localScale.y, transform.localScale.z);
 		}
 		calcularDireccion (transform.localEulerAngles, paused);
+		danoPorTiempo ();
 		Plata.text = dolares.ToString ("0.00");
 		// para pruebas
-		if (dolares == 100f) {
-			//paused = true;
-
-			Debug.Log("parate");
-			//Time.timeScale = 0;
+		if (dolares >= 500f) {
+			paused = true;
+			Plata.text = "Mortadela";
+			Plata.color = Color.red;
+			Time.timeScale = 0;
 
 			}
 
@@ -99,14 +100,19 @@ public class Movement : MonoBehaviour {
 				
 		}
 	public void calcularDano(float angulo){
-//		if (angulo < 15) {
-//			dolares += 0.05f;
-//				} else if (angulo >= 15 && angulo < 30) {
-//			dolares += 0.08f;
-//				} else {
-//			dolares += 2f;
-//				}
-			dolares += 10f * Time.deltaTime;
+		float ratio;
+		if (angulo < 15) {
+			ratio = 2.8f;
+				} else if (angulo >= 15 && angulo < 30) {
+			ratio = 4.2f;
+				} else {
+			ratio =8.75f;
+				}
+			dolares += ratio * Time.deltaTime;
+	}
+
+	public void danoPorTiempo(){
+		dolares += 1.75f * Time.deltaTime;
 	}
 
 
