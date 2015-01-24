@@ -3,6 +3,7 @@ using System.Collections;
 
 public class Movement : MonoBehaviour {
 	public float Speed = 3.0f;
+	public float dolares = 0.0f;
 	// Use this for initialization
 	public GameObject Idle;
 	public GameObject Side;
@@ -77,5 +78,27 @@ public class Movement : MonoBehaviour {
 			Idle.SetActive(false);
 			Side.SetActive(true);
 		}
+		calcularDireccion (transform.localEulerAngles);
 	}
-}
+
+	public void calcularDireccion(Vector3 angulo) {
+				if (angulo.z <= 45) {
+			            
+			calcularDano(angulo.z);
+				} else if ((angulo.z >= 315 && angulo.z < 360)) {
+			calcularDano(angulo.z - 315);
+				} else {
+			calcularDano(100);
+				}
+		}
+	public void calcularDano(float angulo){
+		if (angulo < 15) {
+			dolares =+ 10;
+				} else if (angulo >= 15 && angulo < 30) {
+			dolares =+ 50;
+				} else {
+			dolares =+ 90;
+				}
+	}
+
+	}
