@@ -6,7 +6,6 @@ public class Timer : MonoBehaviour {
 	public Text someText;
 	public float TimerF = 0.0f;
 
-	//public Text sameText;
 	// Use this for initialization
 	void Start () {
 	
@@ -16,10 +15,9 @@ public class Timer : MonoBehaviour {
 	void Update () {
 		TimerF = TimerF + Time.deltaTime;
 		someText.text = MascaraMinutos(TimerF);
-		// para pruebas
-		//someText.text = TimerF.ToString ("0.00");
 
 	}
+
 	public string MascaraMinutos(float tiempo) {
 		string mensaje = "";
 		int minutos = (int)tiempo / 60;

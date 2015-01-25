@@ -10,7 +10,6 @@ public class Friction : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		//transform.Find("Ball").collider2D.sharedMaterial.friction = InitialFriction;
 		self.collider2D.sharedMaterial.friction = InitialFriction;
 		TimerFriction = MaxTime;
 		InitialFriction -= rate;

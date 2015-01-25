@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class Movement : MonoBehaviour {
 	public float Speed = 10.0f;
-	public float dolares = 150.0f;
+	public float dolares = 0.0f;
 	public GameObject Idle;
 	public GameObject Side;
 	private float Horizontal = 0.0f;
@@ -12,9 +12,10 @@ public class Movement : MonoBehaviour {
 	public float TiltCD = 1.0f;
 	private float CurrentCD;
 	public Text Plata;
+	public float ScoreFinish = 500.0f;
 	public bool paused = false;
 	public bool BlowWind = false;
-
+	public GameOver Gameover;
 
 	void Start () {
 		CurrentCD = TiltCD;
@@ -43,7 +44,7 @@ public class Movement : MonoBehaviour {
 
 		angle = transform.localEulerAngles.z;
 		//Debug.Log (angle);
-		if (CurrentCD <= TiltCD) {
+		if (CurrentCD <= TiltCD && paused == false) {
 			float tilting = Mathf.Sin(CurrentCD*6);
 					
 			if (angle + tilting > 360.0f) {
@@ -69,21 +70,19 @@ public class Movement : MonoBehaviour {
 			Side.SetActive(true);
 		}
 		if (Horizontal > 0) { 
-			transform.localScale = new Vector3 (-2.0f, transform.localScale.y, transform.localScale.z);
+			transform.localScale = new Vector3 (-3.459093f, transform.localScale.y, transform.localScale.z);
 		} else if (Horizontal < 0){
-			transform.localScale = new Vector3 (2.0f, transform.localScale.y, transform.localScale.z);
+			transform.localScale = new Vector3 (3.459093f, transform.localScale.y, transform.localScale.z);
 		}
 
 		CalcularDireccion (transform.localEulerAngles, paused);
 		DanoPorTiempo ();
-		Plata.text = dolares.ToString ("0");
+		Plata.text = dolares.ToString ("0.00");
 		// para pruebas
-		if (dolares >= 500f) {
+		if (dolares >= ScoreFinish) {
 			paused = true;
-			Plata.text = "Mortadela";
-			Plata.color = Color.red;
 			Time.timeScale = 0;
-
+			Gameover.Over();
 			}
 
 	}

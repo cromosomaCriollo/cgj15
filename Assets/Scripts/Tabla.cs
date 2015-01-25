@@ -14,7 +14,8 @@ public class Tabla : MonoBehaviour {
 	}
 
 	void OnTriggerEnter2D(Collider2D other) {
-
-		target.dolares += 330f;
+		if (other.tag == "Piso") {
+			target.dolares += 330f;
+		}
 	}
 }
