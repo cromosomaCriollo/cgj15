@@ -42,7 +42,7 @@ public class Movement : MonoBehaviour {
 		//Tilting
 
 		angle = transform.localEulerAngles.z;
-		Debug.Log (angle);
+		//Debug.Log (angle);
 		if (CurrentCD <= TiltCD) {
 			float tilting = Mathf.Sin(CurrentCD*6);
 					
@@ -76,7 +76,7 @@ public class Movement : MonoBehaviour {
 
 		CalcularDireccion (transform.localEulerAngles, paused);
 		DanoPorTiempo ();
-		Plata.text = dolares.ToString ("0.00");
+		Plata.text = dolares.ToString ("0");
 		// para pruebas
 		if (dolares >= 500f) {
 			paused = true;
@@ -113,7 +113,7 @@ public class Movement : MonoBehaviour {
 			ratio =8.75f;	//cualquier otro angulo
 		}
 		dolares += ratio * Time.deltaTime;
-		Debug.Log (ratio);
+		//Debug.Log (ratio);
 	}
 
 	public void DanoPorTiempo(){
