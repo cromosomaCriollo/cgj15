@@ -16,7 +16,7 @@ public class Movement : MonoBehaviour {
 	public bool paused = false;
 	public bool BlowWind = false;
 	public GameOver Gameover;
-
+	public char WindDirection = '';
 	void Start () {
 		CurrentCD = TiltCD;
 	}
@@ -126,7 +126,11 @@ public class Movement : MonoBehaviour {
 	public Vector2 SoplarViento(bool _BlowWind){
 		if (_BlowWind) {
 			float Ponquesito = Random.Range (0.5f, 4.0f);
-			return new Vector2 (Ponquesito, 0.0f);
+				if (WindDirection == 'I'){
+					return new Vector2 (-Ponquesito, 0.0f);
+				}else{
+					return new Vector2 (Ponquesito, 0.0f);
+				}
 		} else {
 			return new Vector2(0.0f, 0.0f);
 		}
