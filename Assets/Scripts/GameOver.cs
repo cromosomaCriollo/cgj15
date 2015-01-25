@@ -13,8 +13,9 @@ public class GameOver : MonoBehaviour {
 
 		HUD.transform.Find ("VolverMenu").gameObject.SetActive (true);
 		HUD.transform.Find ("Restart").gameObject.SetActive (true);
-		transform.Find("GameOver").gameObject.SetActive(true);
 		transform.Find ("Black").gameObject.SetActive (true);
+		transform.Find("GameOver").gameObject.SetActive(true);
+
 	}
 
 }
