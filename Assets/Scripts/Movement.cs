@@ -132,7 +132,7 @@ public class Movement : MonoBehaviour {
 
 	void OnCollisionEnter2D(Collision2D coll) {
 		if (coll.gameObject.tag == "Piso") {
-			dolares += 40.0f * Time.deltaTime;
+			dolares += 1200.0f * Time.deltaTime;
 		}
 	}
 
