@@ -16,7 +16,7 @@ public class Movement : MonoBehaviour {
 	public bool paused = false;
 	public bool BlowWind = false;
 	public GameOver Gameover;
-	public char WindDirection = '';
+	public char WindDirection;
 	void Start () {
 		CurrentCD = TiltCD;
 	}
@@ -103,7 +103,7 @@ public class Movement : MonoBehaviour {
 	public void calcularDano(float angulo){
 		float ratio;
 		if (angulo < 10) {
-			ratio = -1.65f;
+			ratio = 0;
 		} else if (angulo >= 10 && angulo < 18) {
 			ratio = 2.8f;		//entre 10 y 17
 		} else if (angulo >= 18 && angulo < 30) {
@@ -111,10 +111,7 @@ public class Movement : MonoBehaviour {
 		} else {
 			ratio =8.75f;	//cualquier otro angulo
 		}
-		if (dolares > 0) {
-			dolares += ratio * Time.deltaTime;
-				}
-
+		dolares += ratio * Time.deltaTime;
 		//Debug.Log (ratio);
 	}
 

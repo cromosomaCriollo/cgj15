@@ -21,6 +21,14 @@ public class RandomEvents : MonoBehaviour {
 			if (Random.Range (0, 2) == 1 && entro){
 				entro = false;
 				target.BlowWind = true;	
+				float dir;
+				if (Random.Range (0, 2) == 1){
+					target.WindDirection = 'D';
+					dir = 1.00f;
+				}else{
+					target.WindDirection = 'I';
+					dir = -1.00f;
+				}
 				WindI =  Instantiate(PrefabWind, new Vector3 (16.14f, 7.32f, -4.2f), Quaternion.Euler(0.0f, 270.0f, 90.0f));
 				//instanciar los sprite wind, bla bla
 			}else{ 
