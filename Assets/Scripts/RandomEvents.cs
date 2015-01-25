@@ -7,7 +7,8 @@ public class RandomEvents : MonoBehaviour {
 	private float CurrentTimer;
 	public Movement target;                                                                                          
 	private bool entro = true;
-
+	public Transform PrefabWind;
+	private Object WindI;
 	void Start () {
 		CurrentTimer = Timer;
 	}
@@ -15,10 +16,13 @@ public class RandomEvents : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		CurrentTimer -= Time.deltaTime;
+		int Random50 = Random.Range (0, 1);
+		Debug.Log (CurrentTimer + " " + Random50);
 		if (CurrentTimer <= 0) {
-			if (Random.Range(0, 1) == 1 && entro){
+			if (Random50 == 1 && entro){
 				entro = false;
 				target.BlowWind = true;	
+				WindI =  Instantiate(PrefabWind, new Vector3 (16.14f, 7.32f, -4.2f), Quaternion.Euler(0.0f, 270.0f, 90.0f));
 				//instanciar los sprite wind, bla bla
 			}else{ 
 				if (!entro){
@@ -26,6 +30,7 @@ public class RandomEvents : MonoBehaviour {
 						target.BlowWind = false;
 						CurrentTimer = Timer;
 						entro = true;
+						Destroy(WindI);
 					}
 				}else{
 					CurrentTimer = Timer;
