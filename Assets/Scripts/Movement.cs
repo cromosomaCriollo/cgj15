@@ -81,7 +81,6 @@ public class Movement : MonoBehaviour {
 		// para pruebas
 		if (dolares >= ScoreFinish) {
 			paused = true;
-			Time.timeScale = 0;
 			Gameover.Over();
 			}
 
