@@ -13,6 +13,7 @@ public class Movement : MonoBehaviour {
 	private float CurrentCD;
 	public Text Plata;
 	public bool paused = false;
+	public bool BlowWind = false;
 
 
 	void Start () {
@@ -28,8 +29,8 @@ public class Movement : MonoBehaviour {
 		if (Horizontal == 0) {
 			Horizontal = Input.acceleration.x;
 		}
-		Vector2 Vector = new Vector2 (Horizontal, Horizontal/2) * Speed;
-		Vector2 VectorA = new Vector2 (Input.acceleration.x, Horizontal/2) * Speed; //vector ligeramente angulado hacia abajo
+		Vector2 Vector = new Vector2 (Horizontal, Horizontal/2) * Speed + SoplarViento(BlowWind);
+		Vector2 VectorA = new Vector2 (Input.acceleration.x, Horizontal/2) * Speed + SoplarViento (BlowWind); //vector ligeramente angulado hacia abajo
 		rigidbody2D.AddForce (Vector);	//movimiento pc
 		rigidbody2D.AddForce (VectorA); //movimiento movil 
 
@@ -75,7 +76,6 @@ public class Movement : MonoBehaviour {
 
 		CalcularDireccion (transform.localEulerAngles, paused);
 		DanoPorTiempo ();
-		SoplarViento ();
 		Plata.text = dolares.ToString ("0.00");
 		// para pruebas
 		if (dolares >= 500f) {
@@ -93,7 +93,7 @@ public class Movement : MonoBehaviour {
 			if (angulo.z <= 45) {
 				
 				calcularDano(angulo.z);
-			} else if ((angulo.z >= 315 && angulo.z < 360)) {
+			} else if ((angulo.z >= 315 && angulo.z <= 360)) {
 				calcularDano(angulo.z - 315);
 			} else {
 				calcularDano(100);
@@ -106,34 +106,34 @@ public class Movement : MonoBehaviour {
 		if (angulo < 10) {
 			ratio = 0;
 		} else if (angulo >= 10 && angulo < 18) {
-			ratio = 2.8f;
-				} else if (angulo >= 18 && angulo < 30) {
-			ratio = 4.2f;
-				} else {
-			if (TocandoPiso()){
-				ratio =40f;
-			} else {
-				ratio =8.75f;
-			}
-				}
-			dolares += ratio * Time.deltaTime;
+			ratio = 2.8f;		//entre 10 y 17
+		} else if (angulo >= 18 && angulo < 30) {
+			ratio = 4.2f;		//entre 18 a 30°
+		} else {
+			ratio =8.75f;	//cualquier otro angulo
+		}
+		dolares += ratio * Time.deltaTime;
+		Debug.Log (ratio);
 	}
 
 	public void DanoPorTiempo(){
 		dolares += 1.75f * Time.deltaTime;
 	}
 
-	public bool TocandoPiso(){
-		// Por implementar
-		return false;
+
+	public Vector2 SoplarViento(bool _BlowWind){
+		if (_BlowWind) {
+			float Ponquesito = Random.Range (0.5f, 4.0f);
+			return new Vector2 (Ponquesito, 0.0f);
+		} else {
+			return new Vector2(0.0f, 0.0f);
+		}
 	}
 
-	public void SoplarViento(){
-		float aleatorio = Random.Range (1, 4);
-		// resto del numero entre 4
-		if (Time.deltaTime % 4 == 0) {
-
-				}
+	void OnCollisionEnter2D(Collision2D coll) {
+		if (coll.gameObject.tag == "Piso") {
+			dolares += 40.0f * Time.deltaTime;
+		}
 	}
 
 
