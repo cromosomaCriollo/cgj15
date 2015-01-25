@@ -103,7 +103,7 @@ public class Movement : MonoBehaviour {
 	public void calcularDano(float angulo){
 		float ratio;
 		if (angulo < 10) {
-			ratio = 0;
+			ratio = -1.65f;
 		} else if (angulo >= 10 && angulo < 18) {
 			ratio = 2.8f;		//entre 10 y 17
 		} else if (angulo >= 18 && angulo < 30) {
@@ -111,7 +111,10 @@ public class Movement : MonoBehaviour {
 		} else {
 			ratio =8.75f;	//cualquier otro angulo
 		}
-		dolares += ratio * Time.deltaTime;
+		if (dolares > 0) {
+			dolares += ratio * Time.deltaTime;
+				}
+
 		//Debug.Log (ratio);
 	}
 
