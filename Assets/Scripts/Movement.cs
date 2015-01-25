@@ -72,8 +72,10 @@ public class Movement : MonoBehaviour {
 		} else if (Horizontal < 0){
 			transform.localScale = new Vector3 (2.0f, transform.localScale.y, transform.localScale.z);
 		}
-		calcularDireccion (transform.localEulerAngles, paused);
-		danoPorTiempo ();
+
+		CalcularDireccion (transform.localEulerAngles, paused);
+		DanoPorTiempo ();
+		SoplarViento ();
 		Plata.text = dolares.ToString ("0.00");
 		// para pruebas
 		if (dolares >= 500f) {
@@ -86,7 +88,7 @@ public class Movement : MonoBehaviour {
 
 	}
 
-	public void calcularDireccion(Vector3 angulo, bool paused) {
+	public void CalcularDireccion(Vector3 angulo, bool paused) {
 		if (!paused) {
 			if (angulo.z <= 45) {
 				
@@ -101,18 +103,37 @@ public class Movement : MonoBehaviour {
 		}
 	public void calcularDano(float angulo){
 		float ratio;
-		if (angulo < 15) {
+		if (angulo < 10) {
+			ratio = 0;
+		} else if (angulo >= 10 && angulo < 18) {
 			ratio = 2.8f;
-				} else if (angulo >= 15 && angulo < 30) {
+				} else if (angulo >= 18 && angulo < 30) {
 			ratio = 4.2f;
 				} else {
-			ratio =8.75f;
+			if (TocandoPiso()){
+				ratio =40f;
+			} else {
+				ratio =8.75f;
+			}
 				}
 			dolares += ratio * Time.deltaTime;
 	}
 
-	public void danoPorTiempo(){
+	public void DanoPorTiempo(){
 		dolares += 1.75f * Time.deltaTime;
+	}
+
+	public bool TocandoPiso(){
+		// Por implementar
+		return false;
+	}
+
+	public void SoplarViento(){
+		float aleatorio = Random.Range (1, 4);
+		// resto del numero entre 4
+		if (Time.deltaTime % 4 == 0) {
+
+				}
 	}
 
 
